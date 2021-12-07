@@ -4,9 +4,6 @@
   "parameters": {
     "ApimServiceName": {
       "type": "string"
-    },
-    "pointingPokerApi-ServiceUrl": {
-      "type": "string"
     }
   },
   "resources": [
@@ -21,7 +18,6 @@
         "apiVersionSetId": "[resourceId('Microsoft.ApiManagement/service/apiVersionSets', parameters('ApimServiceName'), 'PointingPokerVersionSet')]",
         "subscriptionRequired": false,
         "displayName": "Pointing.Poker.API",
-        "serviceUrl": "[parameters('pointingPokerApi-ServiceUrl')]",
         "path": "points",
         "protocols": [
           "https"

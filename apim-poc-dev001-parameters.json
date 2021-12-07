@@ -7,9 +7,6 @@
     },
     "LinkedTemplatesBaseUrl": {
       "value": "https://raw.githubusercontent.com/kowalski77/kowalski77.github.io/master"
-    },
-    "pointingPokerApi-ServiceUrl": {
-      "value": "https://pointing-poker-dev.azurewebsites.net"
     }
   }
 }
