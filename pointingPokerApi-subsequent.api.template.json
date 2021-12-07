@@ -1,0 +1,45 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "ApimServiceName": {
+      "type": "string"
+    },
+    "pointingPokerApi-ServiceUrl": {
+      "type": "string"
+    }
+  },
+  "resources": [
+    {
+      "properties": {
+        "authenticationSettings": {
+          "subscriptionKeyRequired": false
+        },
+        "type": "https",
+        "apiVersion": "v1",
+        "isCurrent": false,
+        "apiVersionSetId": "[resourceId('Microsoft.ApiManagement/service/apiVersionSets', parameters('ApimServiceName'), 'PointingPokerVersionSet')]",
+        "subscriptionRequired": false,
+        "displayName": "Pointing.Poker.API",
+        "serviceUrl": "[parameters('pointingPokerApi-ServiceUrl')]",
+        "path": "points",
+        "protocols": [
+          "https"
+        ],
+        "apiType": "https"
+      },
+      "name": "[concat(parameters('ApimServiceName'), '/pointingPokerApi')]",
+      "type": "Microsoft.ApiManagement/service/apis",
+      "apiVersion": "2021-01-01-preview",
+      "dependsOn": []
+    },
+    {
+      "name": "[concat(parameters('ApimServiceName'), '/starter/pointingPokerApi')]",
+      "type": "Microsoft.ApiManagement/service/products/apis",
+      "apiVersion": "2021-01-01-preview",
+      "dependsOn": [
+        "[resourceId('Microsoft.ApiManagement/service/apis', parameters('ApimServiceName'), 'pointingPokerApi')]"
+      ]
+    }
+  ]
+}

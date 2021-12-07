@@ -1,0 +1,27 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "ApimServiceName": {
+      "type": "string"
+    },
+    "pointingPokerApi-ServiceUrl": {
+      "type": "string"
+    }
+  },
+  "resources": [
+    {
+      "properties": {
+        "apiVersionSetId": "[resourceId('Microsoft.ApiManagement/service/apiVersionSets', parameters('ApimServiceName'), 'PointingPokerVersionSet')]",
+        "serviceUrl": "[parameters('pointingPokerApi-ServiceUrl')]",
+        "path": "points/3cac96b658094b45bab643bd6a319c61",
+        "value": "{\"openapi\":\"3.0.1\",\"info\":{\"title\":\"Pointing.Poker.API\",\"version\":\"1.0\"},\"paths\":{\"/api/v1/Sessions\":{\"post\":{\"tags\":[\"Sessions\"],\"operationId\":\"CreateSession\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"$ref\":\"#/components/schemas/CreateSessionModel\"}}}},\"responses\":{\"200\":{\"description\":\"Success\",\"content\":{\"application/json\":{\"schema\":{\"$ref\":\"#/components/schemas/SessionDto\"}}}},\"400\":{\"description\":\"Bad Request\",\"content\":{\"application/json\":{\"schema\":{\"$ref\":\"#/components/schemas/ProblemDetails\"}}}}}},\"get\":{\"tags\":[\"Sessions\"],\"operationId\":\"GetSessions\",\"responses\":{\"200\":{\"description\":\"Success\",\"content\":{\"application/json\":{\"schema\":{\"type\":\"array\",\"items\":{\"$ref\":\"#/components/schemas/SessionDto\"}}}}}}}},\"/api/v1/Sessions/{id}\":{\"get\":{\"tags\":[\"Sessions\"],\"operationId\":\"GetSession\",\"parameters\":[{\"name\":\"id\",\"in\":\"path\",\"required\":true,\"schema\":{\"type\":\"string\",\"format\":\"uuid\"}}],\"responses\":{\"200\":{\"description\":\"Success\",\"content\":{\"application/json\":{\"schema\":{\"$ref\":\"#/components/schemas/SessionWithPlayersDto\"}}}},\"404\":{\"description\":\"Not Found\",\"content\":{\"application/json\":{\"schema\":{\"$ref\":\"#/components/schemas/ProblemDetails\"}}}}}}},\"/api/v1/Sessions/{sessionId}/addplayer\":{\"post\":{\"tags\":[\"Sessions\"],\"operationId\":\"AddPlayerToSession\",\"parameters\":[{\"name\":\"sessionId\",\"in\":\"path\",\"required\":true,\"schema\":{\"type\":\"integer\",\"format\":\"int32\"}}],\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"type\":\"string\"}}}},\"responses\":{\"200\":{\"description\":\"Success\",\"content\":{\"application/json\":{\"schema\":{\"$ref\":\"#/components/schemas/SessionDto\"}}}},\"400\":{\"description\":\"Bad Request\",\"content\":{\"application/json\":{\"schema\":{\"$ref\":\"#/components/schemas/ProblemDetails\"}}}},\"404\":{\"description\":\"Not Found\",\"content\":{\"application/json\":{\"schema\":{\"$ref\":\"#/components/schemas/ProblemDetails\"}}}}}}}},\"components\":{\"schemas\":{\"CreateSessionModel\":{\"type\":\"object\",\"properties\":{\"playerName\":{\"type\":\"string\",\"nullable\":true},\"pointsCollection\":{\"type\":\"array\",\"items\":{\"type\":\"integer\",\"format\":\"int32\"},\"nullable\":true}},\"additionalProperties\":false},\"PlayerDto\":{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"string\",\"format\":\"uuid\"},\"name\":{\"type\":\"string\",\"nullable\":true},\"timeJoined\":{\"type\":\"string\",\"format\":\"date-time\"},\"points\":{\"type\":\"integer\",\"format\":\"int32\",\"nullable\":true},\"isObserver\":{\"type\":\"boolean\"}},\"additionalProperties\":false},\"ProblemDetails\":{\"type\":\"object\",\"properties\":{\"type\":{\"type\":\"string\",\"nullable\":true},\"title\":{\"type\":\"string\",\"nullable\":true},\"status\":{\"type\":\"integer\",\"format\":\"int32\",\"nullable\":true},\"detail\":{\"type\":\"string\",\"nullable\":true},\"instance\":{\"type\":\"string\",\"nullable\":true}},\"additionalProperties\":{}},\"SessionDto\":{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"string\",\"format\":\"uuid\"},\"sessionId\":{\"type\":\"integer\",\"format\":\"int32\"}},\"additionalProperties\":false},\"SessionWithPlayersDto\":{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"string\",\"format\":\"uuid\"},\"sessionId\":{\"type\":\"integer\",\"format\":\"int32\"},\"players\":{\"type\":\"array\",\"items\":{\"$ref\":\"#/components/schemas/PlayerDto\"},\"nullable\":true},\"pointsAvailable\":{\"type\":\"array\",\"items\":{\"type\":\"integer\",\"format\":\"int32\"},\"nullable\":true}},\"additionalProperties\":false}}}}",
+        "format": "openapi+json"
+      },
+      "name": "[concat(parameters('ApimServiceName'), '/pointingPokerApi')]",
+      "type": "Microsoft.ApiManagement/service/apis",
+      "apiVersion": "2021-01-01-preview",
+      "dependsOn": []
+    }
+  ]
+}
