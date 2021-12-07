@@ -13,7 +13,13 @@
       "metadata": {
         "description": "Base URL of the repository"
       }
-    }
+    },
+    "pointingPokerApi-ServiceUrl": {
+      "type": "string",
+      "metadata": {
+        "description": "The API service URL"
+      }
+    },
   },
   "resources": [
     {
