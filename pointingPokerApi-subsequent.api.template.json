@@ -12,7 +12,6 @@
         "authenticationSettings": {
           "subscriptionKeyRequired": false
         },
-        "type": "https",
         "apiVersion": "v1",
         "isCurrent": false,
         "apiVersionSetId": "[resourceId('Microsoft.ApiManagement/service/apiVersionSets', parameters('ApimServiceName'), 'PointingPokerVersionSet')]",
@@ -21,8 +20,7 @@
         "path": "points",
         "protocols": [
           "https"
-        ],
-        "apiType": "https"
+        ]
       },
       "name": "[concat(parameters('ApimServiceName'), '/pointingPokerApi')]",
       "type": "Microsoft.ApiManagement/service/apis",
