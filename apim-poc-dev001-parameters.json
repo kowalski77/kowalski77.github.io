@@ -6,7 +6,7 @@
       "value": "apim-poc-dev001"
     },
     "LinkedTemplatesBaseUrl": {
-      "value": "https://stapimexample.blob.core.windows.net/pointing-poker"
+      "value": "https://raw.githubusercontent.com/kowalski77/kowalski77.github.io/master"
     }
   }
 }
